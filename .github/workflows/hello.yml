@@ -29,8 +29,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'        
-                                # кэш зависимостей - ускоряет запуск
- 
+                             
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -40,7 +39,6 @@ jobs:
       - name: Run script
         env:
           MY_API_KEY: ${{ secrets.MY_API_KEY }}     
-                                                    # Секрет подставляется из GitHub
         run: python hello.py
 
       
@@ -57,7 +55,6 @@ jobs:
 
   deploy:
     name: Final step (after tests)
-                                             # Ждёт успешного завершения TEST
     needs: test                       
     runs-on: ubuntu-latest  
 
