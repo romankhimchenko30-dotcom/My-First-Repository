@@ -2,9 +2,9 @@ name: Run My Code Robot lvl 3
 
 on:
   push:
-    branches [ master, main ]
+    branches: [ master, main ]
   pull_request:
-    branches [ master, main ]
+    branches: [ master, main ]
   workflow_dispatch: # позволяет запускать вручную кнопкой в Actions
 
 jobs:
