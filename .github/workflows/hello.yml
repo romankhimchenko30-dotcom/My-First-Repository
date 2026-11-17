@@ -1,22 +1,18 @@
 name: My Level 3 Robot
 
-# Когда запускать робота
 on:
   push:
     branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
-  workflow_dispatch:  
+  workflow_dispatch:
 
 jobs:
-  # 
-  # ЗАДАЧА 1: Тестирование на разных ОС и версиях Python
-  # 
   test:
     name: Test on ${{ matrix.os }} / Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false          
+      fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest ]
         python-version: [ '3.10', '3.11', '3.12' ]
@@ -29,7 +25,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'          
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -39,7 +35,7 @@ jobs:
 
       - name: Run script
         env:
-          MY_API_KEY: ${{ secrets.MY_API_KEY }}  
+          MY_API_KEY: ${{ secrets.MY_API_KEY }}
         run: python hello.py
 
       - name: Upload report as artifact
@@ -49,12 +45,9 @@ jobs:
           path: report.txt
           if-no-files-found: warn
 
-  # 
-  # ЗАДАЧА 2: Финальный шаг — запускается ТОЛЬКО после успешных тестов
-  # 
   deploy:
     name: Final step (after tests)
-    needs: test               
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
