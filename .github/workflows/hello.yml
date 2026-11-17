@@ -36,6 +36,7 @@ jobs:
       - name: Run script
         env:
           MY_API_KEY: ${{ secrets.MY_API_KEY }}
+          PYTHONIOENCODING: utf-8
         run: python hello.py
 
       - name: Upload report as artifact
