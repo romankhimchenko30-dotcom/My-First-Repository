@@ -60,4 +60,4 @@ jobs:
           python-version: '3.11'
 
       - name: Say done
-        run: echo "Все тесты прошли — робот доволен! 🚀"
+        run: echo "Все тесты прошли — робот доволен!"
